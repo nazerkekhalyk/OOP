@@ -1,0 +1,387 @@
+1. Пример с доставкой еды (Инкапсуляция)**
+
+class Delivery {
+    private String courierName;
+    private String restaurant;
+    private String destination;
+
+    public Delivery(String courierName, String restaurant, String destination) {
+        this.courierName = courierName;
+        this.restaurant = restaurant;
+        this.destination = destination;
+    }
+
+    public void pickUpOrder() {
+        System.out.println(courierName + " picked up an order from " + restaurant);
+    }
+
+    public void deliverOrder() {
+        System.out.println(courierName + " is delivering to " + destination);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Delivery delivery = new Delivery("Adilet", "Burger King", "Pushkina 11");
+        delivery.pickUpOrder();
+        delivery.deliverOrder();
+    }
+}
+
+
+2. Пример с умными часами и наследованием (SmartWatch и Tracker пульса)**
+
+
+import java.util.Random;
+
+class Device {
+    String brand;
+
+    void turnOn() {
+        System.out.println(brand + " is now on.");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class SmartWatch extends Device {
+    void trackHeartRate() {
+        System.out.println("Measuring heart rate...");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Random rand = new Random();
+        int bpm = 60 + rand.nextInt(40);
+        System.out.println("Heart Rate: " + bpm + " bpm");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        SmartWatch watch = new SmartWatch();
+        watch.brand = "Apple Watch";
+        watch.turnOn();
+        watch.trackHeartRate();
+    }
+}
+3. Пример с арендами скутеров (Системы классов и объектов)**
+java
+class Scooter {
+    String id;
+    int battery;
+    boolean isRented;
+
+    void rent() {
+        if (battery > 20) {
+            System.out.println("Scooter " + id + " is rented.");
+            isRented = true;
+        } else {
+            System.out.println("Scooter " + id + " Battery too low to rent.");
+        }
+    }
+
+    void status() {
+        System.out.println("Scooter " + id + " | Battery: " + battery + "% | Rented: " + isRented);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        Scooter scooter = new Scooter();
+        scooter.id = "X1";
+        scooter.battery = 42;
+        scooter.rent();
+        scooter.status();
+    }
+}
+
+
+ 4. Пример с системой бронирования событий**
+
+
+class EventBooking {
+    String eventName;
+    int numberOfTickets;
+    boolean isBooked;
+
+    public EventBooking(String eventName, int numberOfTickets) {
+        if (numberOfTickets > 0) {
+            this.eventName = eventName;
+            this.numberOfTickets = numberOfTickets;
+            this.isBooked = true;
+        } else {
+            System.out.println("Invalid number of tickets!");
+            this.isBooked = false;
+        }
+    }
+
+    void showBookingDetails() {
+        if (isBooked) {
+            System.out.println("Booking for " + eventName + " | Tickets: " + numberOfTickets);
+        } else {
+            System.out.println("No tickets booked.");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        EventBooking booking = new EventBooking("Concert", 3);
+        booking.showBookingDetails();
+
+        EventBooking invalidBooking = new EventBooking("Concert", -2);
+        invalidBooking.showBookingDetails();
+    }
+}
+5. Пример с банковским счетом (private и public)**
+
+
+class BankAccount {
+    private double balance;
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: $" + amount);
+        } else {
+            System.out.println("Invalid amount.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= balance && amount > 0) {
+            balance -= amount;
+            System.out.println("Withdrew: $" + amount);
+        } else {
+            System.out.println("Insufficient funds or invalid amount.");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount();
+        account.deposit(500);
+        account.withdraw(200);
+        System.out.println("Current balance: $" + account.getBalance());
+    }
+
+6. Пример с системой самоуправляемого автомобиля (отображение статуса)**
+
+
+class SelfDrivingCar {
+    String location;
+    int speed;
+    boolean autopilotEnabled;
+
+    void showStatus() {
+        System.out.println("Location: " + location);
+        System.out.println("Speed: " + speed + " km/h | Autopilot: " + autopilotEnabled);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        SelfDrivingCar car = new SelfDrivingCar();
+        car.location = "Downtown";
+        car.speed = 0;
+        car.autopilotEnabled = false;
+        car.showStatus();
+        Thread.sleep(1000);
+
+        car.speed = 50;
+        car.autopilotEnabled = true;
+        car.location = "Mangiilik El";
+        car.showStatus();
+    }
+}
+```
+
+7. Пример с системой умной охраны (Ночной режим)**
+
+```java
+class SecuritySystem {
+    String mode;
+    boolean motionDetected;
+    int camerasOnline;
+
+    void status() {
+        System.out.println("Mode: " + mode);
+        System.out.println("Motion Detected: " + motionDetected);
+        System.out.println("Cameras Online: " + camerasOnline);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        SecuritySystem system = new SecuritySystem();
+        system.mode = "Night";
+        system.motionDetected = false;
+        system.camerasOnline = 5;
+        system.status();
+
+        // Кто-то двигается
+        system.motionDetected = true;
+        system.camerasOnline = 4;
+        system.status();
+    }
+}
+8. Пример с приложением для такси (Калькуляция стоимости поездки)**
+
+```java
+class Ride {
+    double baseFare = 700;
+    double pricePerKm = 120;
+
+    double calculateFare(double km, boolean isNight) {
+        double fare = baseFare + (pricePerKm * km);
+        if (isNight) {
+            fare = fare * 1.5;  // Увеличение стоимости ночью
+        }
+        return fare;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Ride ride = new Ride();
+        double price = ride.calculateFare(8.5, true);
+        System.out.println("Ride fare: $" + price);
+    }
+}
+9. Пример с сервисом стриминга (Рекомендация плана подписки)**
+
+class SubscriptionAdvisor {
+    String recommendPlan(int hoursPerWeek) {
+        if (hoursPerWeek < 3) return "Basic Plan";
+        else if (hoursPerWeek <= 10) return "Standard Plan";
+        else return "Premium Plan";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SubscriptionAdvisor advisor = new SubscriptionAdvisor();
+        String plan = advisor.recommendPlan(12);
+        System.out.println("Recommended: " + plan);
+    }
+}
+```
+
+10. Пример с системой аренды автомобилей (Сложная логика конструктора)**
+
+
+class CarRental {
+    String carModel;
+    boolean isAvailable;
+    double rentalPricePerDay;
+
+    public CarRental(String carModel, boolean isAvailable) {
+        this.carModel = carModel;
+        this.isAvailable = isAvailable;
+        if (isAvailable) {
+            this.rentalPricePerDay = 50.0; // Если машина доступна, устанавливаем цену.
+        } else {
+            this.rentalPricePerDay = 0; // Если машина недоступна, цена равна нулю.
+        }
+    }
+
+    void showRentalInfo() {
+        System.out.println("Car Model: " + carModel);
+        System.out.println("Available: " + isAvailable + " | Price per day: $" + rentalPricePerDay);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        CarRental car1 = new CarRental("Toyota Corolla", true);
+        car1.showRentalInfo();
+
+        CarRental car2 = new CarRental("BMW X5", false);
+        car2.showRentalInfo();
+    }
+}
+11. Пример с системой бронирования событий (Проверка валидности)**
+
+
+class EventBooking {
+    String eventName;
+    int numberOfTickets;
+    boolean isBooked;
+
+    public EventBooking(String eventName, int numberOfTickets) {
+        if (numberOfTickets > 0) {
+            this.eventName = eventName;
+            this.numberOfTickets = numberOfTickets;
+            this.isBooked = true;
+        } else {
+            System.out.println("Invalid number of tickets!");
+            this.isBooked = false;
+        }
+    }
+
+    void showBookingDetails() {
+        if (isBooked) {
+            System.out.println("Booking for " + eventName + " | Tickets: " + numberOfTickets);
+        } else {
+            System.out.println("No tickets booked.");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        EventBooking booking = new EventBooking("Concert", 3);
+        booking.showBookingDetails();
+
+        EventBooking invalidBooking = new EventBooking("Concert", -2);
+        invalidBooking.showBookingDetails();
+    }
+}
+12. Пример с системой банковских счетов (private и public)**
+
+
+class BankAccount {
+    private double balance;
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: $" + amount);
+        } else {
+            System.out.println("Invalid amount.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= balance && amount > 0) {
+            balance -= amount;
+            System.out.println("Withdrew: $" + amount);
+        } else {
+            System.out.println("Insufficient funds or invalid amount.");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount();
+        account.deposit(500);
+        account.withdraw(200);
+        System.out.println("Current balance: $" + account.getBalance());
+    }
+}
