@@ -1,3 +1,330 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class EverydayJavaExamples {
+
+    public static void main(String[] args) {
+        // Java If...Else
+        int temperature = 95;
+        int pressure = 101;
+
+        if (temperature >= 100 && pressure >= 100) {
+            System.out.println("The kettle is boiling!");
+        } else {
+            System.out.println("Not ready yet, please wait.");
+        }
+
+        System.out.println();
+
+        // Java Switch
+        String code = "F2";
+
+        switch (code) {
+            case "F1":
+                System.out.println("Fantasy");
+                break;
+            case "F2":
+                System.out.println("Science Fiction");
+                break;
+            case "N1":
+                System.out.println("Novel");
+                break;
+            default:
+                System.out.println("Unknown genre");
+        }
+
+        System.out.println();
+
+        // Java While Loop
+        int batteryLevel = 100;
+
+        while (batteryLevel > 20) {
+            System.out.println("Battery level: " + batteryLevel + "%");
+            batteryLevel -= 15;
+        }
+        System.out.println("Warning: low battery!");
+
+        System.out.println();
+
+        // Java For Loop
+        String[] ingredients = {"Rose petal", "Fairy dust", "Dragon tear"};
+
+        for (int i = 0; i < ingredients.length; i++) {
+            System.out.println("Ingredient " + (i + 1) + ": " + ingredients[i]);
+        }
+
+        System.out.println();
+
+        // Java Break/Continue
+        String[] findings = {"stone", "feather", "rare amulet", "coin"};
+
+        for (String item : findings) {
+            if (item.equals("rare amulet")) {
+                System.out.println("Artifact found: " + item);
+                break;
+            }
+        }
+
+        System.out.println();
+
+        // Java Arrays
+        int[] temperatures = {23, 21, 19, 18, 20};
+
+        for (int t : temperatures) {
+            System.out.println("Temperature: " + t + "°C");
+        }
+
+        System.out.println();
+
+        // Java Methods
+        String password = generatePassword();
+        System.out.println("Random password: " + password);
+
+        System.out.println();
+
+        // Java Method Parameters
+        String risk = riskLevel(80, 5);
+        System.out.println("Zone risk: " + risk);
+
+        System.out.println();
+
+        // Java Method Overloading
+        int storageInKB = storageVolume(2048);
+        int storageInBytes = storageVolume(2, "MB");
+        System.out.println("Storage in KB: " + storageInKB);
+        System.out.println("Storage in Bytes: " + storageInBytes);
+
+        System.out.println();
+
+        // Java Scope
+        int bonusPoints = 100;
+        updatePoints(); // calls method with local variable
+        System.out.println("Global bonus points: " + bonusPoints);
+
+        System.out.println();
+
+        // Java Recursion
+        int height = towerHeight(5);
+        System.out.println("Tower height: " + height + " levels");
+
+        System.out.println();
+
+        // Java ArrayList
+        ArrayList<String> quests = new ArrayList<>();
+        quests.add("Find the ancient scroll");
+        quests.add("Defeat the ice golem");
+        quests.add("Open the portal");
+
+        System.out.println("Quest list:");
+        for (String quest : quests) {
+            System.out.println("- " + quest);
+        }
+
+        System.out.println();
+
+        // Java LinkedList
+        LinkedList<String> timeline = new LinkedList<>();
+        timeline.add("Woke up");
+        timeline.add("Explored the ruins");
+        timeline.addFirst("Dream");
+        timeline.addLast("Returned home");
+
+        System.out.println("Timeline:");
+        for (String event : timeline) {
+            System.out.println("> " + event);
+        }
+
+        System.out.println();
+
+        // Java List Sorting
+        ArrayList<Integer> energyLevels = new ArrayList<>();
+        energyLevels.add(42);
+        energyLevels.add(75);
+        energyLevels.add(23);
+        energyLevels.add(90);
+
+        Collections.sort(energyLevels);
+        System.out.println("Energy levels sorted:");
+        for (int level : energyLevels) {
+            System.out.println(level + " units");
+        }
+
+        System.out.println();
+
+        // Java HashMap
+        HashMap<String, String> spellBook = new HashMap<>();
+        spellBook.put("Ignis", "Fireball");
+        spellBook.put("Aqua", "Water stream");
+        spellBook.put("Terra", "Earthquake");
+
+        System.out.println("Spellbook:");
+        for (String key : spellBook.keySet()) {
+            System.out.println(key + ": " + spellBook.get(key));
+        }
+
+        System.out.println();
+
+        // Java HashSet
+        HashSet<String> relics = new HashSet<>();
+        relics.add("Sun Amulet");
+        relics.add("Crystal of Darkness");
+        relics.add("Crystal of Darkness"); // duplicate won't be added
+
+        System.out.println("Unique relics:");
+        for (String relic : relics) {
+            System.out.println(relic);
+        }
+
+        System.out.println();
+
+        // Java Iterator
+        ArrayList<String> scrolls = new ArrayList<>();
+        scrolls.add("Lightning Scroll");
+        scrolls.add("Shield Scroll");
+        scrolls.add("Invisibility Scroll");
+
+        Iterator<String> scrollIterator = scrolls.iterator();
+        System.out.println("Reading scrolls:");
+        while (scrollIterator.hasNext()) {
+            String scroll = scrollIterator.next();
+            System.out.println(">> " + scroll);
+        }
+
+        System.out.println();
+
+        // Java Wrapper Classes
+        Integer mana = 120;
+        Double precision = 85.5;
+        Boolean isInvisible = true;
+
+        System.out.println("Character stats:");
+        System.out.println("Mana: " + mana);
+        System.out.println("Precision: " + precision);
+        System.out.println("Invisibility active: " + isInvisible);
+    }
+
+    // Method to generate a password
+    public static String generatePassword() {
+        return "Xy" + (int)(Math.random() * 10000);
+    }
+
+    // Method with parameters
+    public static String riskLevel(int radiation, int hours) {
+        if (radiation * hours > 300) {
+            return "High risk!";
+        } else {
+            return "Minimal risk.";
+        }
+    }
+
+    // Overloaded methods
+    public static int storageVolume(int bytes) {
+        return bytes / 1024;
+    }
+
+    public static int storageVolume(int size, String unit) {
+        if (unit.equals("MB")) {
+            return size * 1024;
+        }
+        return size;
+    }
+
+    // Method demonstrating variable scope
+    public static void updatePoints() {
+        int bonusPoints = 50;
+        System.out.println("Local bonus points: " + bonusPoints);
+    }
+
+    // Recursion example
+    public static int towerHeight(int levels) {
+        if (levels == 1) return 1;
+        return 1 + towerHeight(levels - 1);
+    }
+}
+        // Java ArrayList
+        ArrayList<String> quests = new ArrayList<>();
+        quests.add("Найти древний свиток");
+        quests.add("Победить ледяного голема");
+        quests.add("Открыть портал");
+
+        System.out.println("\nСписок квестов:");
+        for (String quest : quests) {
+            System.out.println("- " + quest);
+        }
+
+        // Java LinkedList
+        LinkedList<String> timeline = new LinkedList<>();
+        timeline.add("Пробуждение");
+        timeline.add("Исследование руин");
+        timeline.addFirst("Сон");
+        timeline.addLast("Возвращение домой");
+
+        System.out.println("\nХронология:");
+        for (String event : timeline) {
+            System.out.println("> " + event);
+        }
+
+        // Java List Sorting
+        ArrayList<Integer> energyLevels = new ArrayList<>();
+        energyLevels.add(42);
+        energyLevels.add(75);
+        energyLevels.add(23);
+        energyLevels.add(90);
+
+        Collections.sort(energyLevels);
+        System.out.println("\nУровни энергии по возрастанию:");
+        for (int level : energyLevels) {
+            System.out.println(level + " ед.");
+        }
+
+        // Java HashMap
+        HashMap<String, String> spellBook = new HashMap<>();
+        spellBook.put("Ignis", "Огненный шар");
+        spellBook.put("Aqua", "Водяной поток");
+        spellBook.put("Terra", "Землетрясение");
+
+        System.out.println("\nКнига заклинаний:");
+        for (String key : spellBook.keySet()) {
+            System.out.println(key + ": " + spellBook.get(key));
+        }
+
+        // Java HashSet
+        HashSet<String> relics = new HashSet<>();
+        relics.add("Амулет Солнца");
+        relics.add("Кристалл Тьмы");
+        relics.add("Кристалл Тьмы"); // дубликат — не добавится
+
+        System.out.println("\nУникальные реликвии:");
+        for (String relic : relics) {
+            System.out.println(relic);
+        }
+
+        // Java Iterator
+        ArrayList<String> scrolls = new ArrayList<>();
+        scrolls.add("Свиток молнии");
+        scrolls.add("Свиток защиты");
+        scrolls.add("Свиток невидимости");
+
+        Iterator<String> scrollIterator = scrolls.iterator();
+        System.out.println("\nЧтение свитков:");
+        while (scrollIterator.hasNext()) {
+            String scroll = scrollIterator.next();
+            System.out.println(">> " + scroll);
+        }
+
+        // Java Wrapper Classes
+        Integer mana = 120;     // int в Integer
+        Double precision = 85.5; // double в Double
+        Boolean isInvisible = true; // boolean в Boolean
+
+        System.out.println("\nХарактеристики:");
+        System.out.println("Мана: " + mana);
+        System.out.println("Точность: " + precision);
+        System.out.println("Невидимость активна: " + isInvisible);
 1. Пример с доставкой еды (Инкапсуляция)**
 
 class Delivery {
